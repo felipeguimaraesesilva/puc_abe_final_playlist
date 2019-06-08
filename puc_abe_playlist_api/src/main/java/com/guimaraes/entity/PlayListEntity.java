@@ -9,8 +9,8 @@ import javax.persistence.Id;
 import lombok.Data;
 
 @Data
-@Entity(name = "Cliente")
-public class ClienteEntity {
+@Entity(name = "PlayList")
+public class PlayListEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,8 +20,6 @@ public class ClienteEntity {
 	private String nome;
 
 	@Column
-	private String endereco;
+	private int score;
 
-	@Column
-	private Integer idade;
 }
