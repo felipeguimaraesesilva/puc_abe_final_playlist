@@ -3,6 +3,8 @@ package com.guimaraes.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +21,7 @@ import com.guimaraes.resource.PlayListResource;
 import com.guimaraes.resource.SongResource;
 import com.guimaraes.services.PlayListService;
 import com.guimaraes.services.SongService;
+import com.netflix.discovery.EurekaClient;
 
 @RestController
 public class PlayListController {
@@ -31,6 +34,13 @@ public class PlayListController {
 
 	private static final String RESOURCE_NAME = "/playList";
 	private static final String CONTEXT_RESOURCE = "/" + AppConstants.VERSION_V1 + RESOURCE_NAME;
+
+	@Autowired
+	@Lazy
+	private EurekaClient eurekaClient;
+
+	@Value("${spring.application.name}")
+	private String appName;
 
 	@PostMapping(CONTEXT_RESOURCE)
 	public void newPlayList(@RequestBody PlayListRequest playListRequest) {
