@@ -9,4 +9,6 @@ public interface PlayListService {
 	void newPlayList(PlayListResource cliente);
 
 	List<PlayListResource> getAll();
+
+	void updateScore(long playListId, int score);
 }
